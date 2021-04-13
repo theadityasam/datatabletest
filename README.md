@@ -130,3 +130,27 @@ Test result -
 11  Kol     C    adults         55
 12  Chn     D    adults         66
 ```
+
+## Medium Test
+
+melt() is datatable's wide to long reshaping tool. You can melt the columns into one the following way
+```
+melt(columns)
+```
+- Let's assume we've a datatable as shown below
+```
+DT = dt.Frame(A=['a','b','c'], B=[1,3,5], C=[2,4,6])
+```
+- We can convert this DT to long format the following way 
+We could accomplish this using melt() by specifying id.vars and measure.vars arguments as follows:
+```
+> DT[:, [f.A, melt(f["B":"C"])]]
+   | A   variable  value
+-- + --  --------  -----
+ 0 | a   B             1
+ 1 | a   C             2
+ 2 | b   B             3
+ 3 | b   C             4
+ 4 | c   B             5
+ 5 | c   C             6
+```
